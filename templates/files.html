@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if config["upload"] %}
+    <form action="/{{ config["directory"] }}" enctype="multipart/form-data" method="post">
+      <input type="file" name="file">
+      <input type="submit">
+    </form>
+  {% endif %}
+  <ul>
+    {% for f in files %}
+      <li>
+        <span>{{ f["name"] }} </span>
+        {% if config["download"] %}
+          <a href="{{ config["directory"] }}/{{ f["name"] }}">Download</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

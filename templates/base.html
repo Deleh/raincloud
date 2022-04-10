@@ -1,0 +1,7 @@
+<!doctype html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+<title>{{ config["directory"] }} - {{ cloud_name }}</title>
+<h1>{{ config["directory"] }}</h1>
+{% block content %}{% endblock %}
