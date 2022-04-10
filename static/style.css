@@ -1,3 +1,21 @@
 body {
   font-family: sans-serif;
+  margin: 0;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  border: 1px solid green;
+}
+
+#title {
+  font-size: 14pt;
+}
+
+#content {
+  border: 1px solid red;
 }
