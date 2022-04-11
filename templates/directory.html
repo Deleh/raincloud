@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block nav_content %}
+  {% if config["upload"] %}
+    <div>
+      <form action="/{{ config["directory"] }}" enctype="multipart/form-data" method="post">
+        <label class="button upload">
+          <input type="file" name="file" onchange="this.form.submit()">
+          Upload
+        </label>
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block content %}
+  {% for f in files %}
+    <div class="file">
+      <p>{{ f["name"] }}</p>
+      {% if config["download"] %}
+        <a href="{{ config["directory"] }}/{{ f["name"] }}" class="button">Download</a>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endblock %}

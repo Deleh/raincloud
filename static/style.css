@@ -9,13 +9,60 @@ body {
 }
 
 #header {
-  border: 1px solid green;
+  padding: 15px 30px;
+  border-bottom: 1px solid lightgray;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#title {
-  font-size: 14pt;
+#cloud-name {
+
+}
+
+#directory-name {
+  font-weight: bold;
 }
 
 #content {
-  border: 1px solid red;
+  margin: 50px 150px;
+}
+
+.file {
+  border-bottom: 1px solid lightgrey;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  background-color: #28bcff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0cb3ff;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload {
+  background-color: #4bcd8f;
+}
+
+.upload:hover {
+  background-color: #3bc885;
 }

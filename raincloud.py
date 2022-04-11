@@ -67,20 +67,18 @@ app = Flask(__name__)
 
 @app.route("/<directory>", methods=["GET", "POST"])
 @app.route("/<directory>/<path:filename>", methods=["GET"])
-def files(directory, filename=None):
+def directory(directory, filename=None):
 
     try:
         config = get_config(directory)
         if config["password"]:
-            authenticated = False
-            if directory in session and session[directory] == config["password"]:
-                authenticated = True
+            authenticated = True if directory in session and session[directory] == config["password"] else False
 
             if not authenticated:
                 if request.method == "POST":
                     if request.form["password"] == config["password"]:
                         session[directory] = config["password"]
-                    return redirect(url_for("files", directory=directory))
+                    return redirect(url_for("directory", directory=directory))
                 else:
                     return render_template(
                         "authenticate.html", cloud_name=cloud_name, config=config
@@ -91,7 +89,7 @@ def files(directory, filename=None):
             if not filename:
                 files = get_files(directory)
                 return render_template(
-                    "files.html", cloud_name=cloud_name, config=config, files=files
+                    "directory.html", cloud_name=cloud_name, config=config, files=files
                 )
 
             # Download
@@ -109,11 +107,8 @@ def files(directory, filename=None):
                 if filename != "rc.toml":
                     f.save(base_path / directory / filename)
 
-                # Return new file list
-                files = get_files(directory)
-                return render_template(
-                    "files.html", cloud_name=cloud_name, config=config, files=files
-                )
+                # Reload
+                return redirect(url_for("directory", directory=directory))
             else:
                 return "No upload allowed"
 
