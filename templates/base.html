@@ -2,11 +2,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
-<title>{{ cloud_name }} :: {{ config["directory"] }}</title>
+<title>{{ config["directory"] }} |  {{ cloud_name }}</title>
 <div id="container">
   <div id="header">
     <div>
-      <span id="cloud-name">{{ cloud_name }} :: </span><span id="directory-name">{{ config["directory"] }}</span>
+      <span id="cloud-name">{{ cloud_name }}</span><span id="directory-name">{{ config["directory"] }}</span>
     </div>
     {% block nav_content %}{% endblock %}
   </div>

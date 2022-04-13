@@ -9,16 +9,18 @@ body {
 }
 
 #header {
-  padding: 15px 30px;
+  padding: 0px 30px;
   border-bottom: 1px solid lightgray;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 60px;
 }
 
 #cloud-name {
-
+  color: #28bcff;
+  margin-right: 30px;
 }
 
 #directory-name {
@@ -26,15 +28,21 @@ body {
 }
 
 #content {
-  margin: 50px 150px;
+  margin: 50px 0px;
+  text-align: center;
 }
 
 .file {
   border-bottom: 1px solid lightgrey;
-  padding: 5px 15px;
+  padding: 0px 30px;
+  min-height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+form {
+  display: inline-block;
 }
 
 .button {
@@ -55,14 +63,36 @@ body {
   background-color: #0cb3ff;
 }
 
+.upload {
+  background-color: #ff814e;
+}
+
+.upload:hover {
+  background-color: #ff7740;
+}
+
+.logout {
+  background-color: #ff4e62;
+}
+
+.logout:hover {
+  background-color: #ff3e54;
+}
+
 input[type="file"] {
   display: none;
 }
 
-.upload {
-  background-color: #4bcd8f;
+input[type="password"] {
+  border: 1px solid lightgrey;
+  padding: 11px 11px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 300px;
 }
 
-.upload:hover {
-  background-color: #3bc885;
+input[type="password"]:focus {
+  outline: none;
+  border: 2px solid #ff814e;
+  padding: 10px 10px;
 }
