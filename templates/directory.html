@@ -1,21 +1,19 @@
 {% extends "base.html" %}
-{% block nav_content %}
-  <div>
-    {% if config["upload"] %}
-      <form action="/{{ config["directory"] }}" enctype="multipart/form-data" method="post">
-        <label class="button upload">
-          <input type="file" name="file" onchange="this.form.submit()">
-          Upload
-        </label>
-      </form>
-    {% endif %}
-    {% if config["hashed_password"] %}
-      <form action="/{{ config["directory"] }}" method="post">
-        <input hidden type="text" name="logout">
-        <input type="submit" class="button logout" value="Logout">
-      </form>
-    {% endif %}
-  </div>  
+{% block menu %}
+  {% if config["upload"] %}
+    <form action="/{{ config["directory"] }}" enctype="multipart/form-data" method="post">
+      <label class="button upload">
+        <input type="file" name="file" onchange="this.form.submit()">
+        Upload
+      </label>
+    </form>
+  {% endif %}
+  {% if config["hashed_password"] %}
+    <form action="/{{ config["directory"] }}" method="post">
+      <input hidden type="text" name="logout">
+      <input type="submit" class="button logout" value="Logout">
+    </form>
+  {% endif %}
 {% endblock %}
 {% block content %}
   {% for f in files %}
