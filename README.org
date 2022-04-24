@@ -1,6 +1,6 @@
 * raincloud
 
-  /A self-hosted file sharing cloud for you and your firends./
+  /A self-hosted file sharing cloud for you and your friends./
 
   [[./images/screenshot.png]]
 
