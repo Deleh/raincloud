@@ -3,7 +3,7 @@
   /A self-hosted file sharing cloud for you and your firends./
 
   [[./images/screenshot.png]]
-  
+
   Your friends can't use tools like [[https://github.com/magic-wormhole/magic-wormhole][magic-wormhole]] and you don't want them to upload private data to dubious hosters?
   You want to store a file from a computer you don't own and forgot your USB stick?
   Then maybe /raincloud/ is for you.
@@ -11,7 +11,7 @@
   A flat directory structure is used to generate HTTP routes on the fly.
   All subdirectories in a base path form a route if they contain a =rc.toml= configuration file.
   This configuration file can be used to allow downloading and uploading files to a directory or protecting routes with passwords.
-  
+
 ** Example
 
    Assuming you host /raincloud/ at =https://cloud.example.com= and your base path is =/var/www/public= with the following directory structure:
@@ -80,7 +80,7 @@
     | group     | Group under which the server runs | raincloud     |
     | cloudName | Name of the raincloud             | raincloud     |
     | basePath  | Base path of the raincloud        |               |
-    | secretKey | Flask secret key                  | i_am_a_key    |   
+    | secretKey | Flask secret key                  | i_am_a_key    |
 
 ** Configuration
 
@@ -111,3 +111,14 @@
       # Set this to 'true' to allow uploads to this directory
       upload = false
     #+end_src
+
+** Troubleshooting
+
+   The filesize which can be uploaded may be limited by your web server.
+   When using /Nginx/ for example, the following configuration parameter can be used to increase the upload files size:
+
+   : client_max_body_size 100M;
+
+   Are you getting internal server errors?
+   Check the directory permissions.
+   The user which runs /raincloud/ must have at least =read= permissions to allow downloads and =execute= permissions to allow uploads.
