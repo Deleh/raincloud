@@ -1,0 +1,3 @@
+graft raincloud/static
+graft raincloud/templates
+global-exclude *.pyc

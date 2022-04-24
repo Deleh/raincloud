@@ -12,7 +12,7 @@
       let
         system = config.nixpkgs.localSystem.system;
 
-        python = nixpkgs.legacyPackages.${system}.python;
+        python = nixpkgs.legacyPackages.${system}.python3Packages.python;
         flask = nixpkgs.legacyPackages.${system}.python3Packages.flask;
         gunicorn = nixpkgs.legacyPackages.${system}.python3Packages.gunicorn;
         raincloud = self.packages.${system}.raincloud;
