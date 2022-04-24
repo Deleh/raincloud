@@ -103,7 +103,7 @@
 
                 ExecStart = ''
                   ${gunicorn}/bin/gunicorn "raincloud:app('${raincloud_config}')" \
-                    --bind=${cfg.address}:${cfg.port}
+                    --bind=${cfg.address}:${toString cfg.port}
                 '';
               };
             };
