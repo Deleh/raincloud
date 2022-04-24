@@ -1,0 +1,10 @@
+# Create a password hash with 'mkpasswd -m sha-256' or 'mkpasswd -m sha512' and paste it here.
+# If the following line is uncommented and a hash is set, the directory is password protected.
+#
+# hased_password = ""
+
+# Set this to 'true' to allow file downloads from this directory
+download = false
+
+# Set this to 'true' to allow uploads to this directory
+upload = true
