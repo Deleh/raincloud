@@ -7,6 +7,7 @@ import werkzeug
 from datetime import datetime, timedelta
 from hmac import compare_digest as compare_hash
 from flask import (
+    abort,
     Flask,
     render_template,
     redirect,
@@ -21,10 +22,6 @@ from werkzeug.utils import secure_filename
 base_path = Path("public")
 cloud_name = "raincloud"
 sessions = []
-
-# mkpass = "$6$7lTWfEYgx.nZdM.C$jb2cQt30FzpnEibp2sN2juGL0sGT2Y9dGlVTQvqxBB579Yy5lfbt3tIHjKYnt/MIcff6I6AFp8Q5k1xjN9C8a0"
-# print(compare_hash(mkpass, crypt.crypt("test", mkpass)))
-# exit(1)
 
 
 class RaincloudIOException(Exception):
@@ -156,7 +153,7 @@ def directory(directory, filename=None):
                 if config["download"] and filename != "rc.toml":
                     return send_from_directory(base_path / directory, filename)
                 else:
-                    return "Not allowed"
+                    abort(403)
 
         # Upload
         elif request.method == "POST":
@@ -169,11 +166,11 @@ def directory(directory, filename=None):
                 # Reload
                 return redirect(url_for("directory", directory=directory))
             else:
-                return "No upload allowed"
+                abort(403)
 
     except RaincloudIOException as e:
         print(e)
-        return "No 404 file"
+        abort(404)
 
 
 app.secret_key = "raincloud"
