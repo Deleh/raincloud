@@ -2,6 +2,8 @@
 
   /A self-hosted file sharing cloud for you and your firends./
 
+  [[./images/screenshot.png]]
+  
   Your friends can't use tools like [[https://github.com/magic-wormhole/magic-wormhole][magic-wormhole]] and you don't want them to upload private data to dubious hosters?
   You want to store a file from a computer you don't own and forgot your USB stick?
   Then maybe /raincloud/ is for you.
