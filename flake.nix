@@ -39,9 +39,9 @@
             };
 
             port = mkOption {
-              type = types.str;
-              default = "8000";
-              example = "4000";
+              type = types.int;
+              default = 8000;
+              example = 4000;
               description = "Port on which the server listens";
             };
 
