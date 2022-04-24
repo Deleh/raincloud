@@ -91,7 +91,7 @@
 
    Those can e.g. be stored in a =raincloud_settings.py= file.
    The filepath can directly be passed to =raincloud.app(/path/to/raincloud_settings.py)= or stored in an environment variable =$RAINCLOUD_SETTINGS=.
-   Look at the files =run.py= and =raincloud/default_settings.py= to see how they are used.
+   Look at the file =raincloud/default_settings.py= to see how to define them.
 
 *** =rc.toml=
 
