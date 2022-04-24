@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-  <form action="/{{ config["directory"] }}" method="post">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" class="button" value="Authenticate">
-  </form>
-{% endblock %}
