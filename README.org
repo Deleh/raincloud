@@ -33,6 +33,7 @@
    - =https://cloud.example.org/alice=
    - =https://cloud.example.org/inbox=
 
+   All other routes return =404 Not Found=.
    If the files are downloadable, people can upload new files or the files are password protected can be configured in the =rc.toml= files.
 
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
