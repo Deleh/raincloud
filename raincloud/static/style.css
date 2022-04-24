@@ -1,0 +1,108 @@
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  padding: 0px 30px;
+  border-bottom: 1px solid lightgray;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+}
+
+#cloud-name {
+  color: #28bcff;
+  margin-right: 30px;
+}
+
+#directory-name {
+  font-weight: bold;
+}
+
+#menu {
+  animation: fade-in ease-in-out .5s;
+}
+
+#content {
+  margin: 50px 0px;
+  text-align: center;
+  animation: fade-in ease-in-out .5s;
+}
+
+.file {
+  border-bottom: 1px solid lightgrey;
+  padding: 0px 30px;
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form {
+  display: inline-block;
+}
+
+.button {
+  background-color: #28bcff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0cb3ff;
+}
+
+.upload {
+  background-color: #ff814e;
+}
+
+.upload:hover {
+  background-color: #ff7740;
+}
+
+.logout {
+  background-color: #ff4e62;
+}
+
+.logout:hover {
+  background-color: #ff3e54;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input[type="password"] {
+  border: 1px solid lightgrey;
+  padding: 11px 11px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+input[type="password"]:focus {
+  outline: none;
+  border: 2px solid #ff814e;
+  padding: 10px 10px;
+}

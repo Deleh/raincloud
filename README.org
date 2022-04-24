@@ -1,0 +1,3 @@
+* raincloud
+
+  /Self-hosted file sharing cloud for you and your firends./
