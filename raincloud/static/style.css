@@ -25,11 +25,11 @@ body {
 
 #cloud-name {
   color: #28bcff;
-  margin-right: 30px;
 }
 
 #directory-name {
   font-weight: bold;
+  margin: 0px 30px;
 }
 
 #menu {
