@@ -73,15 +73,15 @@
 
     All configuration options are:
 
-    | Option    | Description                       | Type  | Default value | Example              |
-    |-----------+-----------------------------------+-------+---------------+----------------------|
-    | address   | Bind address of the server        | =str= | =127.0.0.1=   | =0.0.0.0=            |
-    | port      | Port on which the server listens  | =int= | =8000=        | =5000=               |
-    | user      | User under which the server runs  | =str= | =raincloud=   | =alice=              |
-    | group     | Group under which the server runs | =str= | =raincloud=   | =users=              |
-    | cloudName | Name of the raincloud             | =str= | =raincloud=   | =bobsCloud=          |
-    | basePath  | Base path of the raincloud        | =str= |               | =/var/lib/raincloud= |
-    | secretKey | Flask secret key                  | =str= |               | =i_am_a_key=         |
+    | Option      | Description                       | Type  | Default value | Example              |
+    |-------------+-----------------------------------+-------+---------------+----------------------|
+    | =address=   | Bind address of the server        | =str= | =127.0.0.1=   | =0.0.0.0=            |
+    | =port=      | Port on which the server listens  | =int= | =8000=        | =5000=               |
+    | =user=      | User under which the server runs  | =str= | =raincloud=   | =alice=              |
+    | =group=     | Group under which the server runs | =str= | =raincloud=   | =users=              |
+    | =cloudName= | Name of the raincloud             | =str= | =raincloud=   | =bobsCloud=          |
+    | =basePath=  | Base path of the raincloud        | =str= |               | =/var/lib/raincloud= |
+    | =secretKey= | Flask secret key                  | =str= |               | =i_am_a_key=         |
 
 ** Configuration
 
