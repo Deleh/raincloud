@@ -73,15 +73,15 @@
 
     All configuration options are:
 
-    | Option    | Description                       | Type   | Default value |
-    |-----------+-----------------------------------+--------+---------------|
-    | address   | Bind address of the server        | =str=  | =127.0.0.1=   |
-    | port      | Port on which the server listens  | =int=  | =8000=        |
-    | user      | User under which the server runs  | =str=  | =raincloud=   |
-    | group     | Group under which the server runs | =str=  | =raincloud=   |
-    | cloudName | Name of the raincloud             | =str=  | =raincloud=   |
-    | basePath  | Base path of the raincloud        | =path= |               |
-    | secretKey | Flask secret key                  | =str=  |               |
+    | Option    | Description                       | Type  | Default value | Example              |
+    |-----------+-----------------------------------+-------+---------------+----------------------|
+    | address   | Bind address of the server        | =str= | =127.0.0.1=   | =0.0.0.0=            |
+    | port      | Port on which the server listens  | =int= | =8000=        | =5000=               |
+    | user      | User under which the server runs  | =str= | =raincloud=   | =alice=              |
+    | group     | Group under which the server runs | =str= | =raincloud=   | =users=              |
+    | cloudName | Name of the raincloud             | =str= | =raincloud=   | =bobsCloud=          |
+    | basePath  | Base path of the raincloud        | =str= |               | =/var/lib/raincloud= |
+    | secretKey | Flask secret key                  | =str= |               | =i_am_a_key=         |
 
 ** Configuration
 
@@ -91,7 +91,8 @@
    - =secret_key= :: Flask secret key
    - =cloud_name= :: Cloud name (default: =raincloud=)
 
-   Look at the file =run.py= to see how to set them.
+   Set them for example like this:
+   : >>> app = raincloud.create_app(base_path='/home/alice/public', secret_key='super_secret', cloud_name='myCloud')
 
 *** =rc.toml=
 
