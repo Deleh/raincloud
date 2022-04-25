@@ -39,7 +39,7 @@
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
    Just execute the following two command and navigate to [[http://localhost:5000/inbox][http://localhost:5000/inbox]].
 
-   : $ pip install flask toml
+   : $ pip install -r requirements.txt
    : $ ./run.py
 
    The password for the =alice= directory is =movie_evening!=.
