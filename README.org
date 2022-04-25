@@ -37,7 +37,7 @@
    If the files are downloadable, people can upload new files or the files are password protected can be configured in the =rc.toml= files.
 
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
-   Just execute the following two command and navigate to [[http://localhost:5000/inbox][http://localhost:5000/inbox]].
+   Just execute the following two commands and navigate to [[http://localhost:5000/inbox][http://localhost:5000/inbox]].
 
    : $ pip install -r requirements.txt
    : $ ./run.py
