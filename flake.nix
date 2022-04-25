@@ -59,7 +59,7 @@
             };
 
             basePath = mkOption {
-              type = types.path;
+              type = types.str;
               description = "Base path of the raincloud";
             };
 
