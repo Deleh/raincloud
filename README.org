@@ -46,7 +46,7 @@
 
 ** Installation
 
-   Call the following command in the repository to install the module:
+   Execute the following command in the repository to install /raincloud/ in your environment:
 
    : $ pip install .
 
@@ -54,7 +54,7 @@
 
    : $ gunicorn "raincloud:create_app(base_path='public', secret_key='i_am_a_key')"
 
-   *Note* that currently only one worker is supported due to server side session caching.
+   *Note* that currently only one worker makes sense due to server side session caching.
 
 *** NixOS
 
