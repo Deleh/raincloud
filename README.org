@@ -72,15 +72,15 @@
 
     All configuration options are:
 
-    | Option    | Description                       | Default value |
-    |-----------+-----------------------------------+---------------|
-    | address   | Bind address of the server        | 127.0.0.1     |
-    | port      | Port on which the server listens  | 8000          |
-    | user      | User under which the server runs  | raincloud     |
-    | group     | Group under which the server runs | raincloud     |
-    | cloudName | Name of the raincloud             | raincloud     |
-    | basePath  | Base path of the raincloud        |               |
-    | secretKey | Flask secret key                  | i_am_a_key    |
+    | Option    | Description                       | Type  | Default value |
+    |-----------+-----------------------------------+-------+---------------|
+    | address   | Bind address of the server        | =str= | =127.0.0.1=   |
+    | port      | Port on which the server listens  | =int= | =8000=        |
+    | user      | User under which the server runs  | =str= | =raincloud=   |
+    | group     | Group under which the server runs | =str= | =raincloud=   |
+    | cloudName | Name of the raincloud             | =str= | =raincloud=   |
+    | basePath  | Base path of the raincloud        | =str= |               |
+    | secretKey | Flask secret key                  | =str= |               |
 
 ** Configuration
 

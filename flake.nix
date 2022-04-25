@@ -70,7 +70,6 @@
 
             secretKey = mkOption {
               type = types.str;
-              default = "i_am_a_key";
               description = "Flask secret key";
             };
           };
