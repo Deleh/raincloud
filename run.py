@@ -3,5 +3,5 @@
 import raincloud
 
 if __name__ == "__main__":
-    app = raincloud.app()
+    app = raincloud.create_app("public", "dev")
     app.run()

@@ -52,7 +52,7 @@
 
    A WSGI server like [[https://gunicorn.org/][Gunicorn]] can then be used to serve the app for example like this:
 
-   : $ gunicorn "raincloud:app()"
+   : $ gunicorn "raincloud:create_app(base_path='public', secret_key='i_am_a_key')"
 
    *Note* that currently only one worker is supported due to server side session caching.
 
@@ -66,33 +66,32 @@
         services.raincloud = {
           enable = true;
           basePath = "/var/lib/raincloud";
+          secretKey = "i_am_a_key";
         };
       }
     #+end_src
 
     All configuration options are:
 
-    | Option    | Description                       | Type  | Default value |
-    |-----------+-----------------------------------+-------+---------------|
-    | address   | Bind address of the server        | =str= | =127.0.0.1=   |
-    | port      | Port on which the server listens  | =int= | =8000=        |
-    | user      | User under which the server runs  | =str= | =raincloud=   |
-    | group     | Group under which the server runs | =str= | =raincloud=   |
-    | cloudName | Name of the raincloud             | =str= | =raincloud=   |
-    | basePath  | Base path of the raincloud        | =str= |               |
-    | secretKey | Flask secret key                  | =str= |               |
+    | Option    | Description                       | Type   | Default value |
+    |-----------+-----------------------------------+--------+---------------|
+    | address   | Bind address of the server        | =str=  | =127.0.0.1=   |
+    | port      | Port on which the server listens  | =int=  | =8000=        |
+    | user      | User under which the server runs  | =str=  | =raincloud=   |
+    | group     | Group under which the server runs | =str=  | =raincloud=   |
+    | cloudName | Name of the raincloud             | =str=  | =raincloud=   |
+    | basePath  | Base path of the raincloud        | =path= |               |
+    | secretKey | Flask secret key                  | =str=  |               |
 
 ** Configuration
 
-   /raincloud/ provides two configuration options:
+   /raincloud/ provides three configuration options which can be passed to =raincloud.create_app()=:
 
-   - CLOUD_NAME :: Name of the raincloud
-   - SECRET_KEY :: Flask secret key
-   - BASE_PATH :: Base path of the raincloud
+   - =base_path= :: Base path of the raincloud
+   - =secret_key= :: Flask secret key
+   - =cloud_name= :: Cloud name (default: =raincloud=)
 
-   Those can e.g. be stored in a =raincloud_settings.py= file.
-   The filepath can directly be passed to =raincloud.app(/path/to/raincloud_settings.py)= or stored in an environment variable =$RAINCLOUD_SETTINGS=.
-   Look at the file =raincloud/default_settings.py= to see how to define them.
+   Look at the file =run.py= to see how to set them.
 
 *** =rc.toml=
 

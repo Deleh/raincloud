@@ -18,24 +18,14 @@ import crypt
 import werkzeug
 
 
-def app(settings_file=None):
+def create_app(base_path, secret_key, cloud_name="raincloud"):
 
     # Create app
     app = Flask(__name__)
-
-    # Load config
-    app.config.from_object("raincloud.default_settings")
-    if settings_file:
-        app.config.from_pyfile(settings_file)
-    else:
-        app.config.from_envvar("RAINCLOUD_SETTINGS", silent=True)
-
-    if not app.config["BASE_PATH"] or app.config["BASE_PATH"] == "":
-        print("No BASE_PATH defined")
-        exit(1)
+    app.config["SECRET_KEY"] = secret_key
 
     # Create handlers
-    dh = DirectoryHandler(app.config["BASE_PATH"])
+    dh = DirectoryHandler(base_path)
     sh = SessionHandler()
 
     @app.route("/<directory>", methods=["GET", "POST"])
@@ -77,7 +67,7 @@ def app(settings_file=None):
                     else:
                         return render_template(
                             "authenticate.html",
-                            cloud_name=app.config["CLOUD_NAME"],
+                            cloud_name=cloud_name,
                             config=config,
                         )
 
@@ -87,7 +77,7 @@ def app(settings_file=None):
                     files = dh.get_files(directory)
                     return render_template(
                         "directory.html",
-                        cloud_name=app.config["CLOUD_NAME"],
+                        cloud_name=cloud_name,
                         config=config,
                         files=files,
                     )

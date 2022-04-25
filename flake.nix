@@ -20,11 +20,6 @@
 
         cfg = config.services.raincloud;
 
-        raincloud_config = nixpkgs.legacyPackages.${system}.writeText "raincloud_config.py" ''
-          CLOUD_NAME = "${cfg.cloudName}"
-          SECRET_KEY = "${cfg.secretKey}"
-          BASE_PATH = "${cfg.basePath}"
-        '';
       in
         {
           options.services.raincloud = {
@@ -64,7 +59,7 @@
             };
 
             basePath = mkOption {
-              type = types.str;
+              type = types.path;
               description = "Base path of the raincloud";
             };
 
@@ -101,7 +96,7 @@
                 PermissionsStartOnly = true;
 
                 ExecStart = ''
-                  ${gunicorn}/bin/gunicorn "raincloud:app('${raincloud_config}')" \
+                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.secretKey}', '${cfg.cloudName}')" \
                     --bind=${cfg.address}:${toString cfg.port}
                 '';
               };
