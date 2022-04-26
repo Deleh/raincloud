@@ -36,7 +36,7 @@
    - =https://cloud.example.org/inbox=
 
    This is determined by the presence of a =rc.toml= file in subdirectories in which the individual permissions for the routes can be set.
-   The configuration options can be seen [[#rc_toml][below]].
+   The configuration options can be [[#rctoml][seen below]].
    All other routes, including =http://cloud.example.org=, return =404 Not Found=.
 
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
@@ -99,7 +99,7 @@
 
 *** =rc.toml=
     :properties:
-    :custom_id: rc_toml
+    :custom_id: rctoml
     :end:
 
     A =rc.toml= file can contain up to three configuration parameters:
