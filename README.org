@@ -4,20 +4,22 @@
 
   [[./images/screenshot.png]]
 
-  Your friends can't use tools like [[https://github.com/magic-wormhole/magic-wormhole][magic-wormhole]] and you don't want them to upload private data to dubious hosters?
-  You want to store a file from a computer you don't own and forgot your USB stick?
-  Then maybe /raincloud/ is for you.
+  Your friends don't use tools like [[https://github.com/magic-wormhole/magic-wormhole][magic-wormhole]] and you don't want to upload private data to third party file hosters?
+  You want to save a file from a computer that doesn't belong to you and are always losing your USB sticks?
+  /raincloud/ solves those problems by providing a simple self-hosted file sharing platform.
 
-  A flat directory structure is used to generate HTTP routes on the fly.
-  All subdirectories in a base path form a route if they contain a =rc.toml= configuration file.
-  This configuration file can be used to allow downloading and uploading files to a directory or protecting routes with passwords.
+  *Features*
+
+  - No users, just password protectable dynamic HTTP routes
+  - No database backend, just a flat directory structure
+  - Permissions per route individually configurable via plain-text files
 
 ** Example
 
-   Assuming you host /raincloud/ at =https://cloud.example.com= and your base path is =/var/www/public= with the following directory structure:
+   Assuming you host /raincloud/ at =https://cloud.example.com= and it is configured to run on =/var/www/public= with the following directory structure:
 
    #+begin_example
-     public
+     /var/www/public
      ├── alice
      │   ├── big_buck_bunny.mkv
      │   ├── elephants_dream.mkv
@@ -33,8 +35,9 @@
    - =https://cloud.example.org/alice=
    - =https://cloud.example.org/inbox=
 
-   All other routes return =404 Not Found=.
-   If the files are downloadable, people can upload new files or the files are password protected can be configured in the =rc.toml= files.
+   This is determined by the presence of a =rc.toml= file in subdirectories in which the individual permissions for the routes can be set.
+   The configuration options can be seen [[#rc_toml][below]].
+   All other routes, including =http://cloud.example.org=, return =404 Not Found=.
 
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
    Just execute the following two commands and navigate to [[http://localhost:5000/inbox][http://localhost:5000/inbox]].
@@ -42,7 +45,7 @@
    : $ pip install -r requirements.txt
    : $ ./run.py
 
-   The password for the =alice= directory is =movie_evening!=.
+   The password for the =alice= directory is =movie_night!=.
 
 ** Installation
 
@@ -95,15 +98,19 @@
    : >>> app = raincloud.create_app(base_path='/home/alice/public', secret_key='super_secret', cloud_name='myCloud')
 
 *** =rc.toml=
+    :properties:
+    :custom_id: rc_toml
+    :end:
 
-    A =rc.toml= file can contain three configuration parameters.
-    Here is a default file which can be used as template:
+    A =rc.toml= file can contain up to three configuration parameters:
 
     #+begin_src toml
-      # Create a password hash with 'mkpasswd -m sha-256' or 'mkpasswd -m sha512' and paste it here.
-      # If the following line is uncommented and a hash is set, the directory is password protected.
+      # Insert a password hash to enable password protection for this directory
+      # Use one of the following commands to create a hash:
+      #   mkpasswd -m sha-256
+      #   mkpasswd -m sha-512
       #
-      # hashed_password = ""
+      #hashed_password = ""
 
       # Set this to 'true' to allow file downloads from this directory
       download = false
