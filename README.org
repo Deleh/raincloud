@@ -115,7 +115,7 @@
       # Set this to 'true' to allow file downloads from this directory
       download = false
 
-      # Set this to 'true' to allow uploads to this directory
+      # Set this to 'true' to allow file uploads to this directory
       upload = false
     #+end_src
 
