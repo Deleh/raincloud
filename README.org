@@ -32,18 +32,21 @@
 
    Then the following two routes exist:
 
-   - =https://cloud.example.org/alice=
-   - =https://cloud.example.org/inbox=
+   - =https://cloud.example.com/alice=
+   - =https://cloud.example.com/inbox=
 
    This is determined by the presence of a =rc.toml= file in subdirectories in which the individual permissions for the routes can be set.
    The configuration options can be [[#rctoml][seen below]].
-   All other routes, including =http://cloud.example.org=, return =404 Not Found=.
+   All other routes, including =http://cloud.example.com=, return =404 Not Found=.
 
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
    Just execute the following two commands and navigate to [[http://localhost:5000/inbox][http://localhost:5000/inbox]].
 
    : $ pip install -r requirements.txt
    : $ ./run.py
+
+   Play around with the =rc.toml= files and create new directories to see how /raincloud/ behaves.
+   No restarting is needed.
 
    The password for the =alice= directory is =movie_night!=.
 
