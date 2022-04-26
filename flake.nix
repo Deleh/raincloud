@@ -16,7 +16,6 @@
         flask = nixpkgs.legacyPackages.${system}.python3Packages.flask;
         gunicorn = nixpkgs.legacyPackages.${system}.python3Packages.gunicorn;
         raincloud = self.packages.${system}.raincloud;
-        toml = nixpkgs.legacyPackages.${system}.python3Packages.toml;
 
         cfg = config.services.raincloud;
 
@@ -80,7 +79,7 @@
               environment =
                 let
                   penv = python.buildEnv.override {
-                    extraLibs = [ flask raincloud toml ];
+                    extraLibs = [ flask raincloud ];
                   };
                 in
                   {
@@ -131,7 +130,6 @@
               src = self;
               propagatedBuildInputs = with pkgs; [
                 python3Packages.flask
-                python3Packages.toml
               ];
             };
           defaultPackage = self.packages.${system}.raincloud;
@@ -142,7 +140,6 @@
               python3
               python3Packages.flask
               python3Packages.gunicorn
-            python3Packages.toml
             ];
           };
         }

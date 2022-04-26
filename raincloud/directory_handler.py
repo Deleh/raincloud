@@ -1,6 +1,6 @@
 from datetime import datetime
 from pathlib import Path
-import toml
+import configparser
 
 
 class RaincloudIOException(Exception):
@@ -16,31 +16,37 @@ class DirectoryHandler:
             )
 
     def get_config(self, directory):
-        """Load a 'rc.toml' file from given directory.
+        """Load a 'rc.conf' file from given directory.
 
         Parameters:
-            directory - basepath of 'rc.toml'
+            directory - basepath of 'rc.conf'
 
         Returns: Dictionary of config parameters
         """
-        path = self.base_path / directory / "rc.toml"
+        path = self.base_path / directory / "rc.conf"
 
         if path.exists():
             config = {}
             config["directory"] = directory
 
-            parsed_config = toml.load(path)
+            config_parser = configparser.ConfigParser()
+            config_parser.read(path)
+
+            parsed_config = dict(config_parser["raincloud"])
             config["hashed_password"] = (
                 parsed_config["hashed_password"]
                 if "hashed_password" in parsed_config
                 else None
             )
-            config["download"] = (
-                parsed_config["download"] if "download" in parsed_config else False
-            )
-            config["upload"] = (
-                parsed_config["upload"] if "upload" in parsed_config else False
-            )
+            config["download"] = False
+            if (
+                "download" in parsed_config
+                and parsed_config["download"].lower() == "true"
+            ):
+                config["download"] = True
+            config["upload"] = False
+            if "upload" in parsed_config and parsed_config["upload"].lower() == "true":
+                config["upload"] = True
             return config
 
         else:
@@ -52,7 +58,7 @@ class DirectoryHandler:
         file_paths = [f for f in path.glob("*") if f.is_file()]
         files = []
         for p in file_paths:
-            if p.name != "rc.toml":
+            if p.name != "rc.conf":
                 files.append(p.name)
         return files
 

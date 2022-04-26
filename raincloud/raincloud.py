@@ -82,7 +82,7 @@ def create_app(base_path, secret_key, cloud_name="raincloud"):
 
                 # Download
                 else:
-                    if config["download"] and filename != "rc.toml":
+                    if config["download"] and filename != "rc.conf":
                         return send_from_directory(
                             dh.get_absolute_path(directory), filename
                         )
@@ -94,7 +94,7 @@ def create_app(base_path, secret_key, cloud_name="raincloud"):
                 if config["upload"]:
                     f = request.files["file"]
                     filename = secure_filename(f.filename)
-                    if filename != "rc.toml":
+                    if filename != "rc.conf":
                         dh.save_to_directory(f, directory, filename)
 
                     # Reload

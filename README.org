@@ -23,11 +23,11 @@
      ├── alice
      │   ├── big_buck_bunny.mkv
      │   ├── elephants_dream.mkv
-     │   ├── rc.toml
+     │   ├── rc.conf
      │   └── the_daily_dweebs.mkv
      └── inbox
          ├── logo.svg
-         └── rc.toml
+         └── rc.conf
    #+end_example
 
    Then the following two routes exist:
@@ -35,8 +35,8 @@
    - =https://cloud.example.com/alice=
    - =https://cloud.example.com/inbox=
 
-   This is determined by the presence of a =rc.toml= file in subdirectories in which the individual permissions for the routes can be set.
-   The configuration options can be [[#rctoml][seen below]].
+   This is determined by the presence of a =rc.conf= file in subdirectories in which the individual permissions for the routes can be set.
+   The configuration options can be [[#rcconf][seen below]].
    All other routes, including =http://cloud.example.com=, return =404 Not Found=.
 
    This repository contains the above listed =public= directory for testing /raincloud/ locally.
@@ -45,7 +45,7 @@
    : $ pip install -r requirements.txt
    : $ ./run.py
 
-   Play around with the =rc.toml= files and create new directories to see how /raincloud/ behaves.
+   Play around with the =rc.conf= files and create new directories to see how /raincloud/ behaves.
    No restarting is needed.
 
    The password for the =alice= directory is =movie_night!=.
@@ -100,20 +100,22 @@
    Set them for example like this:
    : >>> app = raincloud.create_app(base_path='/home/alice/public', secret_key='super_secret', cloud_name='myCloud')
 
-*** =rc.toml=
+*** =rc.conf=
     :properties:
-    :custom_id: rctoml
+    :custom_id: rcconf
     :end:
 
-    A =rc.toml= file can contain up to three configuration parameters:
+    A =rc.conf= file can contain up to three configuration parameters:
 
-    #+begin_src toml
+    #+begin_src conf
+      [raincloud]
+
       # Insert a password hash to enable password protection for this directory
       # Use one of the following commands to create a hash:
       #   mkpasswd -m sha-256
       #   mkpasswd -m sha-512
       #
-      #hashed_password = ""
+      #hashed_password =
 
       # Set this to 'true' to allow file downloads from this directory
       download = false
