@@ -105,7 +105,7 @@
     :custom_id: rcconf
     :end:
 
-    A =rc.conf= file can contain up to three configuration parameters:
+    A =rc.conf= file looks like the following snippet and can contain up to three configuration parameters after the =[raincloud]= section:
 
     #+begin_src conf
       [raincloud]
