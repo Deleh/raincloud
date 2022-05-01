@@ -95,7 +95,7 @@
     : $ docker build -t raincloud:latest -f Dockerfile
 
     A container of the image exposes raincloud at port =8000= and uses the base directory =/var/www/raincloud=.
-    Use dockers =-p= to map the port on your host and =-v= flag to mount a local base directory:
+    Use dockers =-p= flag to map the port on your host and =-v= flag to mount a local base directory:
 
     : $ docker run -p <local_port>:8000 -v <path_to_local_base_directory>:/var/www/raincloud raincloud:latest
 
