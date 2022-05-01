@@ -13,14 +13,15 @@ from raincloud.directory_handler import DirectoryHandler, RaincloudIOException
 from raincloud.session_handler import SessionHandler
 from werkzeug.utils import secure_filename
 import crypt
+import os
 import werkzeug
 
 
-def create_app(base_path, secret_key, cloud_name="raincloud"):
+def create_app(base_path, cloud_name="raincloud"):
 
     # Create app
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = secret_key
+    app.config["SECRET_KEY"] = os.urandom(24)
 
     # Create handlers
     dh = DirectoryHandler(base_path)

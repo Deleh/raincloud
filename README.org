@@ -58,7 +58,7 @@
 
    A WSGI server like [[https://gunicorn.org/][Gunicorn]] can then be used to serve the app for example like this:
 
-   : $ gunicorn "raincloud:create_app(base_path='public', secret_key='i_am_a_key')"
+   : $ gunicorn "raincloud:create_app(base_path='public')"
 
    *Note* that currently only one worker makes sense due to server side session caching.
 
@@ -72,7 +72,6 @@
         services.raincloud = {
           enable = true;
           basePath = "/var/lib/raincloud";
-          secretKey = "i_am_a_key";
         };
       }
     #+end_src
@@ -87,18 +86,16 @@
     | =group=     | Group under which the server runs | =str= | =raincloud=   | =users=              |
     | =cloudName= | Name of the raincloud             | =str= | =raincloud=   | =bobsCloud=          |
     | =basePath=  | Base path of the raincloud        | =str= |               | =/var/lib/raincloud= |
-    | =secretKey= | Flask secret key                  | =str= |               | =i_am_a_key=         |
 
 ** Configuration
 
-   /raincloud/ provides three configuration options which can be passed to =raincloud.create_app()=:
+   /raincloud/ provides two configuration options which can be passed to =raincloud.create_app()=:
 
    - =base_path= :: Base path of the raincloud
-   - =secret_key= :: Flask secret key
    - =cloud_name= :: Cloud name (default: =raincloud=)
 
    Set them for example like this:
-   : >>> app = raincloud.create_app(base_path='/home/alice/public', secret_key='super_secret', cloud_name='myCloud')
+   : >>> app = raincloud.create_app(base_path='/home/alice/public', cloud_name='myCloud')
 
 *** =rc.conf=
     :properties:

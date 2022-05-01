@@ -61,11 +61,6 @@
               type = types.str;
               description = "Base path of the raincloud";
             };
-
-            secretKey = mkOption {
-              type = types.str;
-              description = "Flask secret key";
-            };
           };
 
           config = mkIf cfg.enable {
@@ -95,7 +90,7 @@
                 PermissionsStartOnly = true;
 
                 ExecStart = ''
-                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.secretKey}', '${cfg.cloudName}')" \
+                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.cloudName}')" \
                     --bind=${cfg.address}:${toString cfg.port}
                 '';
               };
