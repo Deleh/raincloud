@@ -32,7 +32,13 @@ class DirectoryHandler:
             config_parser = configparser.ConfigParser()
             config_parser.read(path)
 
+            if not "raincloud" in config_parser:
+                raise RaincloudIOException(
+                    f"Malformed configuration file in directory '{directory}'"
+                )
+
             parsed_config = dict(config_parser["raincloud"])
+
             config["hashed_password"] = (
                 parsed_config["hashed_password"]
                 if "hashed_password" in parsed_config
@@ -50,7 +56,7 @@ class DirectoryHandler:
             return config
 
         else:
-            raise RaincloudIOException("No raincloud directory")
+            raise RaincloudIOException(f"No raincloud directory '{directory}'")
 
     def get_files(self, directory):
         """Get files from directory."""

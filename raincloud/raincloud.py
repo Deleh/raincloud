@@ -104,7 +104,10 @@ def create_app(base_path, cloud_name="raincloud"):
                     abort(403)
 
         except RaincloudIOException as e:
-            print(e)
+            print(f"RaincloudIOException: {e}")
+            abort(404)
+        except Exception as e:
+            print(f"Unhandled exception: {e}")
             abort(404)
 
     return app
