@@ -52,9 +52,11 @@
 
 ** Installation
 
-   Execute the following command in the repository to install /raincloud/ in your environment:
+   Execute the following command in the repository to install the /raincloud/ module in your environment:
 
    : $ pip install .
+
+** Deployment
 
    A WSGI server like [[https://gunicorn.org/][Gunicorn]] can then be used to serve the app for example like this:
 
