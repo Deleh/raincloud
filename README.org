@@ -5,7 +5,7 @@
   [[./images/screenshot.png]]
 
   Your friends don't use tools like [[https://github.com/magic-wormhole/magic-wormhole][magic-wormhole]] and you don't want to upload private data to third party file hosters?
-  You want to save a file from a computer that doesn't belong to you and are always losing your USB sticks?
+  You want to save a file from a computer that doesn't belong to you and forgot your USB flash drive?
   /raincloud/ solves those problems by providing a simple self-hosted file sharing platform.
 
   *Features*
