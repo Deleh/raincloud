@@ -2,10 +2,13 @@ FROM python:3.11-rc-alpine
 
 ENV cloud_name raincloud
 
-RUN apk update && apk add git
+COPY . /tmp/raincloud
+
 RUN python -m venv /opt/venv
-RUN . /opt/venv/bin/activate && python -m pip install git+https://github.com/Deleh/raincloud
+RUN . /opt/venv/bin/activate && cd /tmp/raincloud && python -m pip install .
 RUN . /opt/venv/bin/activate && python -m pip install gunicorn
+
+RUN rm -rf /tmp/raincloud
 
 EXPOSE 8000/tcp
 

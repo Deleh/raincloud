@@ -91,10 +91,10 @@
 
 *** Docker
 
-    A self-contained =Dockerfile=, based on [[https://www.alpinelinux.org/][Alpine Linux]], is available in the repository.
+    A =Dockerfile=, based on [[https://www.alpinelinux.org/][Alpine Linux]], is available in the repository.
     You can use it to build a /raincloud/ image locally with the following command:
 
-    : $ docker build -t raincloud:latest -f <(curl https://raw.githubusercontent.com/Deleh/raincloud/master/Dockerfile)
+    : $ docker build -t raincloud:latest .
 
     A container of the image exposes raincloud at port =8000= and uses the base directory =/var/www/raincloud=.
     Use dockers =-p= flag to map the port on your host and =-v= flag to mount a local base directory:
