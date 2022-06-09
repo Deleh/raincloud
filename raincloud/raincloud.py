@@ -104,7 +104,7 @@ def create_app(base_path, cloud_name="raincloud"):
                     abort(403)
 
         except RaincloudIOException as e:
-            print(f"RaincloudIOException raised by request from ip {request.remote_addr}: {e}")
+            print(f"RaincloudIOException raised by request from IP {request.remote_addr}: {e}")
             abort(404)
         except Exception as e:
             print(f"Unhandled exception: {e}")
