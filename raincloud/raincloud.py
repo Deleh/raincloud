@@ -85,7 +85,9 @@ def create_app(base_path, cloud_name="raincloud"):
                 else:
                     if config["download"] and filename != "rc.conf":
                         return send_from_directory(
-                            dh.get_absolute_path(directory), filename
+                            dh.get_absolute_path(directory),
+                            filename,
+                            as_attachment=True,
                         )
                     else:
                         abort(404)
