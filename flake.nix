@@ -98,7 +98,7 @@
 
                 ExecStart = ''
                   ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.cloudName}')" \
-                    --timeout ${cfg.workerTimeout} \
+                    --timeout ${toString cfg.workerTimeout} \
                     --bind=${cfg.address}:${toString cfg.port}
                 '';
               };
