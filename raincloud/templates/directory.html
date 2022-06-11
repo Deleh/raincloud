@@ -18,7 +18,7 @@
 {% block content %}
   {% for f in files %}
     <div class="file">
-      <p>{{ f }}</p>
+      <p>{{ f["name"] }}<span class="file-size">{{ f["size"] }}</span></p>
       {% if config["download"] %}
         <a href="{{ config["directory"] }}/{{ f }}" class="button">Download</a>
       {% endif %}

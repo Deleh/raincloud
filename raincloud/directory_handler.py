@@ -1,6 +1,17 @@
 from datetime import datetime
 from pathlib import Path
 import configparser
+import os
+
+
+def get_human_readable_filesize(num_bytes):
+    """Return a human readable string of 'num_bytes'."""
+    print(num_bytes)
+    for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
+        if abs(num_bytes) < 1024.0:
+            return f"{num_bytes:3.1f} {unit}B"
+        num_bytes /= 1024.0
+    return f"{num_bytes:.1f} YiB"
 
 
 class RaincloudIOException(Exception):
@@ -65,7 +76,13 @@ class DirectoryHandler:
         files = []
         for p in file_paths:
             if p.name != "rc.conf":
-                files.append(p.name)
+                print(p)
+                files.append(
+                    {
+                        "name": p.name,
+                        "size": get_human_readable_filesize(os.path.getsize(p)),
+                    }
+                )
         return files
 
     def get_absolute_path(self, directory):
