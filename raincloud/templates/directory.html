@@ -20,7 +20,7 @@
     <div class="file">
       <p>{{ f["name"] }}<span class="file-size">{{ f["size"] }}</span></p>
       {% if config["download"] %}
-        <a href="{{ config["directory"] }}/{{ f }}" class="button">Download</a>
+        <a href="{{ config["directory"] }}/{{ f["name"] }}" class="button">Download</a>
       {% endif %}
     </div>
   {% endfor %}
