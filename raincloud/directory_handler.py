@@ -6,7 +6,6 @@ import os
 
 def get_human_readable_filesize(num_bytes):
     """Return a human readable string of 'num_bytes'."""
-    print(num_bytes)
     for unit in ["", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
         if abs(num_bytes) < 1024.0:
             return f"{num_bytes:3.1f} {unit}B"
@@ -76,7 +75,6 @@ class DirectoryHandler:
         files = []
         for p in file_paths:
             if p.name != "rc.conf":
-                print(p)
                 files.append(
                     {
                         "name": p.name,
