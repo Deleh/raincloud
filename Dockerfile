@@ -1,6 +1,7 @@
 FROM python:3.11-rc-alpine
 
 ENV cloud_name raincloud
+ENV worker_timeout 300
 
 COPY . /tmp/raincloud
 
@@ -12,4 +13,4 @@ RUN rm -rf /tmp/raincloud
 
 EXPOSE 8000/tcp
 
-ENTRYPOINT . /opt/venv/bin/activate && gunicorn --bind=0.0.0.0:8000 "raincloud:create_app(base_path='/var/www/raincloud',cloud_name='${cloud_name}')"
+ENTRYPOINT . /opt/venv/bin/activate && gunicorn --timeout ${worker_timeout} --bind=0.0.0.0:8000 "raincloud:create_app(base_path='/var/www/raincloud',cloud_name='${cloud_name}')"

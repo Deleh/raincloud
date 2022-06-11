@@ -61,6 +61,13 @@
               type = types.str;
               description = "Base path of the raincloud";
             };
+
+            workerTimeout = mkOption {
+              type = types.int;
+              default = 300;
+              example = 360;
+              description = "Gunicorn worker timeout";
+            };
           };
 
           config = mkIf cfg.enable {
@@ -91,7 +98,7 @@
 
                 ExecStart = ''
                   ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.cloudName}')" \
-                    --timeout 300 \
+                    --timeout ${cfg.workerTimeout} \
                     --bind=${cfg.address}:${toString cfg.port}
                 '';
               };
