@@ -100,8 +100,7 @@
 
     : $ docker run -p <local_port>:8000 -v <path_to_local_base_directory>:/var/www/raincloud -e "cloud_name=podcloud" raincloud:latest
 
-    Similarly the environment variable =worker_timeout= can be set to increase the Gunicorn worker timeout in seconds.
-    It's default value is =300=.
+    The environment variables =num_workers= (default: =5=) and =worker_timeout= (default: =300=) can be set in the same way to set the number of Gunicorn workers and their timeout in seconds.
 
 ** Configuration
 
