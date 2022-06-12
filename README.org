@@ -11,7 +11,7 @@
   *Features*
 
   - No users, just password protectable dynamic HTTP routes
-  - No database backend, just a flat directory structure
+  - Routes are defined by a flat directory structure
   - Permissions per route individually configurable via plain-text files
 
 ** Example
