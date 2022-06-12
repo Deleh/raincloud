@@ -152,6 +152,7 @@
               src = self;
               propagatedBuildInputs = with pkgs; [
                 python3Packages.flask
+                python3Packages.redis
               ];
             };
           defaultPackage = self.packages.${system}.raincloud;
