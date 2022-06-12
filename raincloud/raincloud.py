@@ -18,12 +18,16 @@ import werkzeug
 
 
 def create_app(
-    base_path, secret_key, redis_url="redis://127.0.0.1:6379/0", cloud_name="raincloud"
+    base_path,
+    secret_key_path,
+    redis_url="redis://127.0.0.1:6379/0",
+    cloud_name="raincloud",
 ):
 
     # Create app
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = secret_key
+    with open(secret_key_path, "r") as secret_key_file:
+        app.config["SECRET_KEY"] = secret_key_file.readline()
 
     # Create handlers
     dh = DirectoryHandler(base_path)

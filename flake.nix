@@ -59,17 +59,20 @@
 
             basePath = mkOption {
               type = types.str;
+              example = "/var/lib/raincloud"
               description = "Base path of the raincloud";
             };
 
-            secretKey = mkOption {
+            secretKeyPath = mkOption {
               type = types.str;
-              description = "Flask secret key";
+              example = "/var/lib/raincloud/secret_key";
+              description = "Path to file containing Flask secret key";
             };
 
             redisUrl = mkOption {
               type = types.str;
               default = "redis://127.0.0.1:6379/0";
+              example = "unix:/run/redis-raincloud/redis.sock";
               description = "URL of Redis database";
             };
 
@@ -115,7 +118,7 @@
                 PermissionsStartOnly = true;
 
                 ExecStart = ''
-                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.secretKey}', '${cfg.redisUrl}', '${cfg.cloudName}')" \
+                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.secretKeyPath}', '${cfg.redisUrl}', '${cfg.cloudName}')" \
                     --workers ${toString cfg.numWorkers} \
                     --timeout ${toString cfg.workerTimeout} \
                     --bind=${cfg.address}:${toString cfg.port}
