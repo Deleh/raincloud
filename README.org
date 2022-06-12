@@ -39,17 +39,6 @@
    The configuration options can be [[#rcconf][seen below]].
    All other routes, including =http://cloud.example.com=, return =404 Not Found=.
 
-   This repository contains the above listed =public= directory for testing /raincloud/ locally.
-   Just execute the following two commands and navigate to [[http://localhost:5000/inbox][http://localhost:5000/inbox]].
-
-   : $ pip install -r requirements.txt
-   : $ ./run.py
-
-   Play around with the =rc.conf= files and create new directories to see how /raincloud/ behaves.
-   No restarting is needed.
-
-   The password for the =alice= directory is =movie_night!=.
-
 ** Installation
 
    Execute the following command in the repository to install the /raincloud/ module in your environment:
@@ -58,20 +47,32 @@
 
 ** Deployment
 
-   A WSGI server like [[https://gunicorn.org/][Gunicorn]] can then be used to serve the app for example like this:
+   First set up a [[https://redis.io/][Redis]] server which will be used for server-side session caching.
+   Then a WSGI server like [[https://gunicorn.org/][Gunicorn]] can be used to serve /raincloud/ for example like this:
 
    : $ gunicorn "raincloud:create_app(base_path='public', secret_key='i_am_a_key', redis_url='redis://127.0.0.1:6379/0')"
 
 *** NixOS
 
     This repository is also a [[https://nixos.wiki/wiki/Flakes][Nix Flake]] which provides a [[https://nixos.org/][NixOS]] module.
-    A minimal running instance can be setup for example like this:
+    It requres a running instance of a [[https://search.nixos.org/options?query=services.redis.servers][Redis server]].
+    A minimal /raincloud/ instance can be setup for example like this:
 
     #+begin_src nix
       raincloud.nixosModule {
+        # Redis
+        services.redis.servers."raincloud" = {
+          enable = true;
+          databases = 1;
+          user="raincloud";
+        };
+
+        # Raincloud
         services.raincloud = {
           enable = true;
           basePath = "/var/lib/raincloud";
+          secretKey = "i_am_a_key";
+          redisUrl = "unix:/run/redis-raincloud/redis.sock";
         };
       }
     #+end_src
@@ -87,7 +88,7 @@
     | =cloudName=     | Name of the raincloud                                         | =str= | =raincloud=                | =bobsCloud=                   |
     | =basePath=      | Base path of the raincloud                                    | =str= |                            | =/var/lib/raincloud=          |
     | =secretKey=     | Flask secret key                                              | =str= |                            | =i_am_a_key=                  |
-    | =redisUrl=      | URL of redis database                                         | =str= | =redis://127.0.0.1:6379/0= | =redis://my_db_server:6379/0= |
+    | =redisUrl=      | URL of Redis database                                         | =str= | =redis://127.0.0.1:6379/0= | =redis://my_db_server:6379/0= |
     | =numWorkers=    | Number of Gunicorn workers (recommendation is: 2 x #CPUs + 1) | =int= | =5=                        | =17=                          |
     | =workerTimeout= | Gunicorn worker timeout                                       | =int= | =300=                      | =360=                         |
 
