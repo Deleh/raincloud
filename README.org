@@ -64,7 +64,7 @@
           enable = true;
           basePath = "/var/lib/raincloud";
           secretKeyPath = "/var/lib/raincloud/secret_key";
-          redisUrl = "unix:/run/redis-raincloud/redis.sock";
+          redisUrl = "unix:/run/redis-raincloud/redis.sock?db=0";
         };
       }
     #+end_src
@@ -80,7 +80,7 @@
     | =cloudName=     | Name of the raincloud                                         | =str= | =raincloud=                | =bobsCloud=                            |
     | =basePath=      | Base path of the raincloud                                    | =str= |                            | =/var/lib/raincloud=                   |
     | =secretKeyPath= | Path to file containing Flask secret key                      | =str= |                            | =/var/lib/raincloud/secret_key=        |
-    | =redisUrl=      | URL of Redis database                                         | =str= | =redis://127.0.0.1:6379/0= | =unix:/run/redis-raincloud/redis.sock= |
+    | =redisUrl=      | URL of Redis database                                         | =str= | =redis://127.0.0.1:6379/0= | =unix:/run/redis-raincloud/redis.sock?db=0= |
     | =numWorkers=    | Number of Gunicorn workers (recommendation is: 2 x #CPUs + 1) | =int= | =5=                        | =17=                                   |
     | =workerTimeout= | Gunicorn worker timeout                                       | =int= | =300=                      | =360=                                  |
 
