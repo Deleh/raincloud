@@ -55,19 +55,11 @@
 *** NixOS
 
     This repository is also a [[https://nixos.wiki/wiki/Flakes][Nix Flake]] which provides a [[https://nixos.org/][NixOS]] module.
-    It requres a running instance of a [[https://search.nixos.org/options?query=services.redis.servers][Redis server]].
+    It requires a running instance of a [[https://search.nixos.org/options?query=services.redis.servers][Redis server]].
     A minimal /raincloud/ instance can be setup for example like this:
 
     #+begin_src nix
       raincloud.nixosModule {
-        # Redis
-        services.redis.servers."raincloud" = {
-          enable = true;
-          databases = 1;
-          user="raincloud";
-        };
-
-        # Raincloud
         services.raincloud = {
           enable = true;
           basePath = "/var/lib/raincloud";
