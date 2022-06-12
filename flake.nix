@@ -70,7 +70,7 @@
             redisUrl = mkOption {
               type = types.str;
               default = "redis://127.0.0.1:6379/0";
-              description = "URL of redis database";
+              description = "URL of Redis database";
             };
 
             numWorkers = mkOption {
