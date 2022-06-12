@@ -17,15 +17,17 @@ import os
 import werkzeug
 
 
-def create_app(base_path, cloud_name="raincloud"):
+def create_app(
+    base_path, secret_key, redis_url="redis://127.0.0.1:6379/0", cloud_name="raincloud"
+):
 
     # Create app
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = os.urandom(24)
+    app.config["SECRET_KEY"] = secret_key
 
     # Create handlers
     dh = DirectoryHandler(base_path)
-    sh = SessionHandler()
+    sh = SessionHandler(redis_url)
 
     @app.route("/<directory>", methods=["GET", "POST"])
     @app.route("/<directory>/<path:filename>", methods=["GET"])

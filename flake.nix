@@ -62,6 +62,24 @@
               description = "Base path of the raincloud";
             };
 
+            secretKey = mkOption {
+              type = types.str;
+              description = "Flask secret key";
+            };
+
+            redisUrl = mkOption {
+              type = types.str;
+              default = "redis://127.0.0.1:6379/0";
+              description = "URL of redis database";
+            };
+
+            numWorkers = mkOption {
+              type = types.int;
+              default = 5;
+              example = 17;
+              description = "Number of Gunicorn workers (recommendation is: 2 x #CPUs + 1)";
+            };
+
             workerTimeout = mkOption {
               type = types.int;
               default = 300;
@@ -97,7 +115,8 @@
                 PermissionsStartOnly = true;
 
                 ExecStart = ''
-                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.cloudName}')" \
+                  ${gunicorn}/bin/gunicorn "raincloud:create_app('${cfg.basePath}', '${cfg.secretKey}', '${cfg.redisUrl}', '${cfg.cloudName}')" \
+                    --workers ${toString cfg.numWorkers} \
                     --timeout ${toString cfg.workerTimeout} \
                     --bind=${cfg.address}:${toString cfg.port}
                 '';
@@ -143,6 +162,7 @@
               python3
               python3Packages.flask
               python3Packages.gunicorn
+              python3Packages.redis
             ];
           };
         }
