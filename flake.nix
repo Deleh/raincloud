@@ -59,7 +59,7 @@
 
             basePath = mkOption {
               type = types.str;
-              example = "/var/lib/raincloud"
+              example = "/var/lib/raincloud";
               description = "Base path of the raincloud";
             };
 
